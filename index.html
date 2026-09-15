@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguro Escolar SE - Rescate de Tareas y Materiales</title>
+    <title>StudyAdviser - Avisos de Tareas en Tiempo Real</title>
     <!-- Fuente Montserrat desde Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,11 +22,8 @@
             --gray: #64748B;
             --gray-light: #F1F5F9;
 
-            /* Psicología del Color para los Planes (Estilo Elegante) */
-            --basic-color: #475569;
-            --plus-color: #1E3A8A;
-            --premium-color: #7C3AED;
-            --deluxe-color: #D97706;
+            /* Color del Plan Único */
+            --plan-color: #722F37;
         }
 
         * {
@@ -153,18 +150,16 @@
             letter-spacing: -0.5px;
         }
 
-        /* Tarjetas / Planes UI */
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            align-items: stretch;
+        /* Contenedor del Plan Único */
+        .single-plan-container {
+            max-width: 520px;
+            margin: 0 auto;
         }
 
         .card {
             background: white;
             border-radius: 20px;
-            padding: 28px 24px;
+            padding: 32px 28px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             border: 1px solid #E2E8F0;
             text-align: center;
@@ -173,6 +168,7 @@
             justify-content: space-between;
             position: relative;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 6px solid var(--plan-color);
         }
 
         .card:hover {
@@ -180,33 +176,22 @@
             box-shadow: 0 15px 35px rgba(74, 28, 35, 0.15);
         }
 
-        .card-basic { border-top: 6px solid var(--basic-color); }
-        .card-plus { border-top: 6px solid var(--plus-color); }
-        .card-premium { border-top: 6px solid var(--premium-color); }
-        .card-deluxe { 
-            border-top: 6px solid var(--deluxe-color);
-            background: linear-gradient(180deg, #FFFFFF 0%, #FFFBEB 100%);
-        }
-
-        .card-basic .price { color: var(--basic-color); }
-        .card-plus .price { color: var(--plus-color); }
-        .card-premium .price { color: var(--premium-color); }
-        .card-deluxe .price { color: var(--deluxe-color); }
-
         .card h3 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 700;
             margin-bottom: 8px;
+            color: var(--wine-dark);
         }
 
         .price {
-            font-size: 2rem;
+            font-size: 2.3rem;
             font-weight: 800;
             margin: 15px 0 20px;
+            color: var(--wine-primary);
         }
 
         .price span {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--gray);
             font-weight: normal;
         }
@@ -215,7 +200,7 @@
             list-style: none;
             margin-bottom: 30px;
             text-align: left;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
         }
 
         .card ul li {
@@ -231,55 +216,33 @@
             position: absolute;
             left: 0;
             font-weight: 800;
+            color: var(--wine-primary);
         }
 
-        .card-basic ul li::before { color: var(--basic-color); }
-        .card-plus ul li::before { color: var(--plus-color); }
-        .card-premium ul li::before { color: var(--premium-color); }
-        .card-deluxe ul li::before { color: var(--deluxe-color); }
-
-        /* Botones de Acción con Sombras */
-        .btn-checkout {
+        .btn-register {
             display: block;
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             border-radius: 12px;
             border: none;
             color: white;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 1rem;
             cursor: pointer;
+            text-decoration: none;
+            text-align: center;
             transition: all 0.3s ease;
+            background-color: var(--wine-primary);
+            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.3);
         }
 
-        .bg-basic { 
-            background-color: var(--basic-color);
-            box-shadow: 0 4px 12px rgba(71, 85, 105, 0.25);
-        }
-        .bg-plus { 
-            background-color: var(--plus-color);
-            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
-        }
-        .bg-premium { 
-            background-color: var(--premium-color);
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
-        }
-        .bg-deluxe { 
-            background-color: var(--deluxe-color);
-            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
-        }
-
-        .btn-checkout:hover {
+        .btn-register:hover {
             transform: translateY(-2px);
-            filter: brightness(1.1);
+            background-color: var(--wine-dark);
+            box-shadow: 0 8px 20px rgba(74, 28, 35, 0.4);
         }
 
-        .bg-basic:hover { box-shadow: 0 8px 20px rgba(71, 85, 105, 0.4); }
-        .bg-plus:hover { box-shadow: 0 8px 20px rgba(30, 58, 138, 0.4); }
-        .bg-premium:hover { box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4); }
-        .bg-deluxe:hover { box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4); }
-
-        /* SECCIÓN "¿CÓMO FUNCIONA ESTE SEGURO?" */
+        /* SECCIÓN "¿CÓMO FUNCIONA ESTE SERVICIO?" */
         .how-it-works-section {
             background: white;
             padding: 40px 35px;
@@ -337,67 +300,6 @@
             line-height: 1.5;
         }
 
-        /* SECCIÓN TÉRMINOS CON ANIMACIÓN FADE IN */
-        .terms-section {
-            display: none;
-            background: white;
-            padding: 35px;
-            border-radius: 24px;
-            margin-top: 45px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid #E2E8F0;
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .printable-box {
-            background: var(--gray-light);
-            border: 2px dashed #CBD5E1;
-            padding: 30px;
-            border-radius: 16px;
-            margin: 25px 0;
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.8;
-        }
-
-        .printable-box h4 {
-            color: var(--wine-dark);
-            margin-bottom: 15px;
-            font-size: 1.25rem;
-            font-family: inherit;
-        }
-
-        .copy-btn {
-            background: var(--wine-dark);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(74, 28, 35, 0.25);
-        }
-
-        .copy-btn:hover {
-            transform: translateY(-2px);
-            background: var(--wine-primary);
-            box-shadow: 0 8px 22px rgba(114, 47, 55, 0.4);
-        }
-
         footer {
             text-align: center;
             margin-top: 60px;
@@ -409,14 +311,14 @@
 </head>
 <body>
 
-    <div class="brand-corner">Seguro Escolar SE (Study Efficience)</div>
+    <div class="brand-corner">StudyAdviser</div>
 
     <header>
-        <h1>🛡️ Seguro Escolar "Study Efficience"</h1>
-        <p>Olvidar tareas o materiales ya no te costará calificación. Cobertura inmediata para garantizar tu éxito académico.</p>
+        <h1>🎓 StudyAdviser</h1>
+        <p>Avisos y recordatorios de tareas en tiempo real directo en tu navegador. Entérate al instante antes que en cualquier otra plataforma.</p>
         <div class="header-buttons">
-            <a href="#planes" class="btn-header btn-info">Ver Planes y Precios</a>
-            <a href="#como-funciona" class="btn-header btn-how">¿Cómo funciona este seguro?</a>
+            <a href="#plan" class="btn-header btn-info">Ver Plan Mensual</a>
+            <a href="#como-funciona" class="btn-header btn-how">¿Cómo funciona?</a>
         </div>
     </header>
 
@@ -424,163 +326,62 @@
 
         <!-- SECCIÓN COMO FUNCIONA -->
         <div class="how-it-works-section" id="como-funciona">
-            <h2 class="section-title" style="margin-top: 0;">¿Cómo Funciona el Seguro Escolar SE?</h2>
+            <h2 class="section-title" style="margin-top: 0;">¿Cómo Funciona StudyAdviser?</h2>
             <p style="text-align: center; max-width: 750px; margin: 0 auto; color: #475569; font-weight: 500;">
-                Diseñado para salvar tu día escolar ante cualquier imprevisto. Funciona exactamente igual que una membresía de protección rápida:
+                Sistema directo de notificaciones web y control de cuenta:
             </p>
             
             <div class="steps-grid">
                 <div class="step-card">
-                    <div class="step-icon">1</div>
-                    <h4>Contratas tu Plan</h4>
-                    <p>Eliges el plan mensual que mejor se adapte a tus necesidades (Básico, Plus, Premium o Deluxe) e imprimes tu ficha.</p>
+                    <div class="step-icon">💻</div>
+                    <h4>1. Crea tu Cuenta</h4>
+                    <p>Registrarte en la plataforma web usando tu correo y una contraseña para habilitar tu perfil.</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-icon">2</div>
-                    <h4>¡Ocurre la Emergencia!</h4>
-                    <p>¿Se te olvidó imprimir la tarea, necesitas colores, cartulina o se te acabó la pluma antes de la clase?</p>
+                    <div class="step-icon">💵</div>
+                    <h4>2. Pago Presencial</h4>
+                    <p>Realiza tu pago en efectivo ($75 MXN) directo en la escuela para validar tu suscripción mensual.</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-icon">3</div>
-                    <h4>Solicitas tu Rescate</h4>
-                    <p>Acudes con nosotros en la escuela y activas 1 de tus rescates mensuales incluidos sin pagar nada extra en el momento.</p>
+                    <div class="step-icon">🛡️</div>
+                    <h4>3. Autorización Admin</h4>
+                    <p>El administrador aprueba tu perfil desde el panel de control y activa el envío de avisos a tu cuenta.</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-icon">4</div>
-                    <h4>Salvas tu Calificación</h4>
-                    <p>Te entregamos la impresión o material que necesitas al instante para que entregues tu trabajo a tiempo.</p>
+                    <div class="step-icon">⚡</div>
+                    <h4>4. Avisos en Fa</h4>
+                    <p>Recibe alertas push instantáneas en tu navegador Chrome y revisa tu panel interno de tareas al instante.</p>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN PLANES -->
-        <h2 class="section-title" id="planes">Elige el Plan que Necesitas</h2>
+        <!-- SECCIÓN PLAN ÚNICO -->
+        <h2 class="section-title" id="plan">Suscripción Mensual de Avisos</h2>
         
-        <div class="plans-grid">
-
-            <!-- BÁSICO -->
-            <div class="card card-basic">
+        <div class="single-plan-container">
+            <div class="card">
                 <div>
-                    <h3>Básico</h3>
-                    <div class="price">$20 <span>MXN/mes</span></div>
+                    <h3>Suscripción StudyAdviser 🎓</h3>
+                    <div class="price">$75 <span>MXN/mes</span></div>
                     <ul>
-                        <li><strong>3 rescates al mes</strong></li>
-                        <li>Impresiones simples incluidas</li>
-                        <li>Préstamo básico de útiles</li>
+                        <li><strong>Avisos instantáneos vía plataforma web y Chrome</strong></li>
+                        <li>Notificaciones Push en fa (más rápidas que Classroom o correo)</li>
+                        <li>Panel interno de tareas, maquetas y evaluaciones</li>
+                        <li>Desglose claro de requisitos e instrucciones por materia</li>
+                        <li>Activación segura vía panel de Administrador</li>
+                        <li>Tolerancia de pago flexible de 3 días hábiles</li>
                     </ul>
                 </div>
-                <button class="btn-checkout bg-basic" onclick="selectPlan('Básico', 20, '3 rescates al mes (impresiones simples de hasta 5 hojas o préstamo de útiles).', '2 días hábiles')">Ver Registro y Términos</button>
+                <!-- BOTÓN PARA CONFIGURAR MÁS TARDE -->
+                <a href="crear-cuenta.html" class="btn-register" id="btnGoToRegister">Crear Cuenta e Inscribirme</a>
             </div>
-
-            <!-- PLUS -->
-            <div class="card card-plus">
-                <div>
-                    <h3>Plus</h3>
-                    <div class="price">$50 <span>MXN/mes</span></div>
-                    <ul>
-                        <li><strong>8 rescates al mes</strong></li>
-                        <li>Impresiones color/blanco y negro</li>
-                        <li>Préstamo completo de útiles</li>
-                        <li>Recordatorio de entregas</li>
-                    </ul>
-                </div>
-                <button class="btn-checkout bg-plus" onclick="selectPlan('Plus', 50, '8 rescates al mes (impresiones color/B/N de hasta 10 hojas y préstamo completo).', '3 días hábiles')">Ver Registro y Términos</button>
-            </div>
-
-            <!-- PREMIUM -->
-            <div class="card card-premium">
-                <div>
-                    <h3>Premium ⭐</h3>
-                    <div class="price">$100 <span>MXN/mes</span></div>
-                    <ul>
-                        <li><strong>15 rescates al mes</strong></li>
-                        <li>Atención e impresión prioritaria</li>
-                        <li>Materiales especiales (cartulinas/hojas)</li>
-                        <li>Préstamo libre de útiles</li>
-                    </ul>
-                </div>
-                <button class="btn-checkout bg-premium" onclick="selectPlan('Premium', 100, '15 rescates al mes con atención prioritaria y hojas/cartulinas incluidas.', '5 días hábiles')">Ver Registro y Términos</button>
-            </div>
-
-            <!-- DELUXE -->
-            <div class="card card-deluxe">
-                <div>
-                    <h3>Deluxe 👑</h3>
-                    <div class="price">$150 <span>MXN/mes</span></div>
-                    <ul>
-                        <li><strong>Rescates ilimitados</strong></li>
-                        <li>Atención VIP inmediata</li>
-                        <li>Impresiones y materiales incluidos</li>
-                        <li>Asistencia en maquetas / proyectos</li>
-                    </ul>
-                </div>
-                <button class="btn-checkout bg-deluxe" onclick="selectPlan('Deluxe', 150, 'Rescates ilimitados, atención VIP y apoyo directo en maquetas/proyectos.', '7 días hábiles (1 semana)')">Ver Registro y Términos</button>
-            </div>
-
-        </div>
-
-        <!-- SECCIÓN TÉRMINOS -->
-        <div class="terms-section" id="termsSection">
-            <h3 id="planTitle" style="color: var(--wine-dark); font-size: 1.6rem; font-weight: 800;"></h3>
-            
-            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--gray);">
-                <strong>Instrucciones:</strong> Copia la hoja de contratación de abajo, pégala en <strong>Word</strong> o tu editor preferido, imprímela y entrégala presencialmente en la escuela junto con el efectivo exacto.
-            </p>
-
-            <div class="printable-box" id="printableArea">
-                <h4 style="text-align: center;">HOJA DE INSCRIPCIÓN Y TÉRMINOS - SEGURO ESCOLAR SE</h4>
-                <p>--------------------------------------------------------------------------------</p>
-                <p><strong>Plan Seleccionado:</strong> <span id="infoPlan"></span></p>
-                <p><strong>Costo Mensual:</strong> <span id="infoPrice"></span></p>
-                <p><strong>Nombre del Alumno:</strong> _____________________________________</p>
-                <p><strong>Grado y Grupo:</strong> _________________________________________</p>
-                <p>--------------------------------------------------------------------------------</p>
-                <p><strong>TÉRMINOS Y COBERTURA DEL SERVICIO:</strong></p>
-                <p>• <strong>Cobertura:</strong> <span id="infoCoverage"></span></p>
-                <p>• <strong>Tolerancia de Pago:</strong> Se otorga un margen de <span id="infoTolerance"></span> tras la fecha límite de cobro para liquidar la cuota mensual.</p>
-                <p>• <strong>Reglas de Préstamo:</strong> Los útiles y herramientas prestados deben devolverse intactos antes de finalizar la jornada escolar.</p>
-                <p>• <strong>Suspensión:</strong> Al superar la tolerancia de pago sin liquidar la cuota presencial, la membresía pasará a estado inactivo.</p>
-                <p>--------------------------------------------------------------------------------</p>
-                <p><strong>Firma de Conformidad del Alumno:</strong> ___________________________</p>
-            </div>
-
-            <button class="copy-btn" onclick="copyText()">📋 Copiar Texto para Pegar en Word</button>
         </div>
 
         <footer>
-            <p>© 2026 Seguro Escolar SE (Study Efficience) - Todos los derechos reservados.</p>
+            <p>© 2026 StudyAdviser - Todos los derechos reservados.</p>
         </footer>
 
     </div>
 
-    <script>
-        function selectPlan(name, price, coverage, tolerance) {
-            document.getElementById('planTitle').innerText = 'Ficha de Registro y Términos - Plan ' + name;
-            document.getElementById('infoPlan').innerText = name;
-            document.getElementById('infoPrice').innerText = '$' + price + ' MXN';
-            document.getElementById('infoCoverage').innerText = coverage;
-            document.getElementById('infoTolerance').innerText = tolerance;
-
-            const termsSec = document.getElementById('termsSection');
-            
-            termsSec.classList.remove('fade-in');
-            void termsSec.offsetWidth;
-            
-            termsSec.style.display = 'block';
-            termsSec.classList.add('fade-in');
-
-            termsSec.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function copyText() {
-            const textToCopy = document.getElementById('printableArea').innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert('¡Texto copiado con éxito! Ahora puedes pegarlo en Word, imprimirlo y llevarlo junto con tu pago presencial.');
-            }).catch(() => {
-                alert('Selecciona manualmente el texto del cuadro para copiarlo.');
-            });
-        }
-    </script>
 </body>
-</html>
 </html>
